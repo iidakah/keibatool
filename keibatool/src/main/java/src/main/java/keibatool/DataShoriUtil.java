@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -20,7 +21,7 @@ import org.jsoup.select.Elements;
 public class DataShoriUtil {
 
 	private static final String BREEDER_TEXT = "生産者";
-	static void updateHorseMstecursively(ArrayList<String> horseIdList, int num, boolean isPed) {
+	public static void updateHorseMstecursively(ArrayList<String> horseIdList, int num, boolean isPed) {
 		String horseUrlPre = "https://db.netkeiba.com/horse/";
 		for(String horseId : horseIdList) {
 			try {
@@ -46,12 +47,14 @@ public class DataShoriUtil {
 					Elements profTh = horsePage.select(".db_prof_table").get(0).select("th");
 					String owner = prof.get(2).text();
 					String trainer = prof.get(1).text();
-					if (StringUtil.equals(profTh.get(3),BREEDER_TEXT)) {
-						String breeder = prof.get(3).text();
-						String career = prof.get(7).text();
+					String breeder = null;
+					String career = null;
+					if (StringUtils.equals(profTh.get(3).text(),BREEDER_TEXT)) {
+						 breeder = prof.get(3).text();
+						 career = prof.get(7).text();
 					} else {
-						String breeder = prof.get(4).text();
-						String career = prof.get(8).text();
+						breeder = prof.get(4).text();
+						career = prof.get(8).text();
 					}
 					//HorseMst("horseId,horceName,sex,age,father,mother,bms,owner,trainer,breader,career");
 					String horseData = horseId +","+ horseName +","+ sex +","+ age +","+ father +","+ mother +","+ bms +","+
@@ -94,7 +97,7 @@ public class DataShoriUtil {
 		return true;
 	}
 
-	static void createRacePayInfo(Document document, String raceId, PrintWriter p) {
+	public static void createRacePayInfo(Document document, String raceId, PrintWriter p) {
 		// RacePayInfo("raceId,singleNo,singlePay,fukushoNo1,fukushoPay1,fukushoNo2,fukushoPay2,fukushoNo3,fukushoPay3),
 		Elements els = document.select(".pay_table_01").get(0).select("tr");
 		// 単勝
@@ -114,7 +117,7 @@ public class DataShoriUtil {
 		return els.get(i).select("td").get(j).text();
 	}
 
-	static void createRaceInfo(Document document, String raceId, PrintWriter p) {
+	public static void createRaceInfo(Document document, String raceId, PrintWriter p) {
 		System.out.println(raceId);
 		String raceName = document.select(".raceData").get(0).select("h1").get(0).text();
 		// ex. ダ右1800m / 天候 : 晴 / ダート : 良 / 発走 : 14:25
@@ -131,7 +134,7 @@ public class DataShoriUtil {
 		p.println();
 	}
 
-	static String findCondition(String conditions, String ptnStr) {
+	public static String findCondition(String conditions, String ptnStr) {
 		Pattern ptn = Pattern.compile(ptnStr);
 		Matcher m = ptn.matcher(conditions);
 		if (m.find()) {
@@ -140,7 +143,7 @@ public class DataShoriUtil {
 		return "";
 	}
 
-	static ArrayList<String> updateRaceData(Document document, String raceId, FileWriter raceDataCsv, PrintWriter p) {
+	public static ArrayList<String> updateRaceData(Document document, String raceId, FileWriter raceDataCsv, PrintWriter p) {
 		Elements elements = document.select(".race_table_01");
 		ArrayList<String> horseIdList = new ArrayList<>();
 		for (Element element : elements) {
@@ -159,8 +162,8 @@ public class DataShoriUtil {
 		return horseId;
 	}
 
-	static void createFirstLine(PrintWriter p) {
-		p.print(columns.RaceInfo.getValue());
+	public static void createFirstLine(PrintWriter p) {
+		p.print(Columns.RaceInfo.getValue());
 		p.println();
 	}
 
@@ -195,7 +198,7 @@ public class DataShoriUtil {
 		String diff = weightAndDiff.substring(3).replaceAll("[¥¥(¥¥)]", "");
 		p.print(diff);
 	}
-	public enum columns{
+	public enum Columns{
 	    RaceInfo("raceId,raceName,course,distance,baba,place,barei,jouken"),
 	    RaceData("raceId,order,wakuban,umaban,horseId,horseInfo,burden,jockey,time,chakusa,extraCode,pass,last,single,ninki,weight,weightDiff"),
 	    RacePayInfo("raceId,singleNo,singlePay,fukushoNo1,fukushoPay1,fukushoNo2,fukushoPay2,fukushoNo3,fukushoPay3"),
@@ -203,7 +206,7 @@ public class DataShoriUtil {
 
 	  private String name;
 
-	  columns(String name){
+	  Columns(String name){
 	    this.name = name;
 	  }
 	  public String getValue(){

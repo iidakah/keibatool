@@ -1,4 +1,4 @@
-package src.main.java.keibatool;
+package src.main.java.keibatool.batch;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -9,7 +9,9 @@ import java.util.List;
 
 import org.jsoup.nodes.Document;
 
-import keibatool.DataShoriUtil.columns;
+import src.main.java.keibatool.DataShoriUtil;
+import src.main.java.keibatool.DataShoriUtil.Columns;
+import src.main.java.keibatool.RaceDownloader;
 
 public class ReceResultMaker {
 	/**
@@ -32,12 +34,12 @@ public class ReceResultMaker {
 
 		FileWriter raceDataCsv = new FileWriter("./raceData.csv", false);
 		PrintWriter p4raceData = new PrintWriter(new BufferedWriter(raceDataCsv));
-		p4raceData.print(columns.RaceData.getValue());
+		p4raceData.print(Columns.RaceData.getValue());
 		p4raceData.println();
 
 		FileWriter racePayCsv = new FileWriter("./racePay.csv", false);
 		PrintWriter p4racePay = new PrintWriter(new BufferedWriter(racePayCsv));
-		p4racePay.print(columns.RacePayInfo.getValue());
+		p4racePay.print(Columns.RacePayInfo.getValue());
 		p4racePay.println();
 
 		List<Document> docs = RaceDownloader.getRaceDocs(filename);
