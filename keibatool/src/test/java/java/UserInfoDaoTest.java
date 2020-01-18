@@ -4,9 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.seasar.doma.jdbc.tx.TransactionManager;
 
-import src.main.java.keibatool.AppConfig;
-import src.main.java.keibatool.dao.UserInfoDao;
-import src.main.java.keibatool.entity.UserInfo;
+import keibatool.dao.UserInfoDao;
+import keibatool.AppConfig;
 
 public class UserInfoDaoTest {
 	  private final UserInfoDao dao = new UserInfoDaoImpl();

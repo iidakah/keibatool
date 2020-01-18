@@ -1,4 +1,4 @@
-package src.main.java.keibatool.entity;
+package keibatool.entity;
 
 import java.time.LocalDate;
 

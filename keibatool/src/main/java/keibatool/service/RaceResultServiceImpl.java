@@ -1,4 +1,4 @@
-package src.main.java.keibatool.service;
+package keibatool.service;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -14,14 +14,11 @@ import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import src.main.java.keibatool.dao.HorseMstDao;
-import src.main.java.keibatool.dao.RaceDataDao;
-import src.main.java.keibatool.dao.RaceInfoDao;
-import src.main.java.keibatool.dao.RacePayDao;
-import src.main.java.keibatool.entity.HorseMst;
-import src.main.java.keibatool.entity.RaceData;
-import src.main.java.keibatool.entity.RaceInfo;
-import src.main.java.keibatool.entity.RacePay;
+import keibatool.dao.HorseMstDao;
+import keibatool.dao.RaceDataDao;
+import keibatool.dao.RaceInfoDao;
+import keibatool.dao.RacePayDao;
+import keibatool.entity.RaceData;
 
 @Service
 public class RaceResultServiceImpl implements RaceResultService {

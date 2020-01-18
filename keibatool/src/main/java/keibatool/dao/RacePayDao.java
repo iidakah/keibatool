@@ -1,14 +1,15 @@
-package src.main.java.keibatool.dao;
+package keibatool.dao;
 
 import org.seasar.doma.Dao;
 import org.seasar.doma.Insert;
 import org.springframework.transaction.annotation.Transactional;
 
-import src.main.java.keibatool.entity.RaceData;
+import keibatool.entity.RacePay;
+
 
 @Dao
-public interface RaceDataDao {
+public interface RacePayDao {
 	@Insert
     @Transactional
-    int insert(RaceData raceData);
+    int insert(RacePay racePay);
 }

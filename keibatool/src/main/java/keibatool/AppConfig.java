@@ -1,4 +1,4 @@
-package src.main.java.keibatool;
+package keibatool;
 
 import javax.sql.DataSource;
 

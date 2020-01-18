@@ -1,4 +1,4 @@
-package src.main.java.keibatool;
+package keibatool;
 
 import java.io.BufferedReader;
 import java.io.File;

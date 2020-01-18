@@ -1,4 +1,4 @@
-package src.main.java.keibatool.service;
+package keibatool.service;
 
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Service;
