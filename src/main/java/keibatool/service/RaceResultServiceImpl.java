@@ -19,6 +19,7 @@ import keibatool.dao.RaceDataDao;
 import keibatool.dao.RaceInfoDao;
 import keibatool.dao.RacePayDao;
 import keibatool.entity.RaceData;
+import keibatool.entity.RaceInfo;
 
 @Service
 public class RaceResultServiceImpl implements RaceResultService {
