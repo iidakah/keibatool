@@ -1,4 +1,4 @@
 SELECT
 userId,
 userName
-from UserInfoDao
+from UserInfo
